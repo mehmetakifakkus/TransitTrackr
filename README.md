@@ -1,5 +1,3 @@
-Sure, here's a detailed project description for a Live Map Tracker project:
-
 ### Project Title: 
 **TransitTrackr** - A Real-Time Public Transport Tracking Application
 
