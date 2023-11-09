@@ -1,85 +1,86 @@
-### Project Title: 
-**TransitTrackr** - A Real-Time Public Transport Tracking Application
+# TransitTrackr
 
-### Project Description:
-TransitTrackr will be a web application that allows users to track the real-time locations of public transportation vehicles, such as buses or trains, in a specified city or area. Users will be able to view the vehicles on a map, see estimated arrival times, and get updates on delays or cancellations.
+## Project Overview and Task
+TransitTrackr is a real-time public transport tracking web application that allows users to view and track the live locations of public transportation vehicles on a map. This application focuses on the San Jose, California area and simulates vehicle movement by generating routes with random coordinates.
 
-### Core Features:
-1. **Real-time Location Updates:** Display live locations of buses/trains on a map.
-2. **Route Information:** Show detailed routes with stops for each vehicle.
-3. **Search Functionality:** Allow users to search for specific routes or stops.
-4. **User Authentication:** Enable users to create accounts and save favorite routes.
-5. **Notifications:** Send alerts about delays, cancellations, or arrival times.
+## Deliverables:
+Create 5 routes using comprising 15 points each using the `generateRandomCoordinates` method, and save them to static code or to MongoDB, as in the `backend.js`. Once done, develop an application that shows the live location of public transport vehicles (like buses or trains) on a map.
+Documentation, including setup instructions, API endpoints, and WebSocket events.
+A Dockerfile and docker-compose.yml for containerization.
+Automated tests for both the front-end and back-end.
 
-### Tech Stack:
-- **Frontend:**
-  - **Framework:** React.js (with Hooks and Context API for state management)
-  - **Mapping Library:** Leaflet.js or Google Maps API for rendering interactive maps
-  - **Styling:** Styled-Components or Sass for custom styles
-  - **Testing:** Jest for unit tests and Cypress for end-to-end testing
-- **Backend (A Template will be provided) :**
-  - **Language:** Node.js
-  - **Framework:** Express.js for handling API requests
-  - **WebSocket Library:** Socket.IO for WebSocket connection
-  - **Database:** MongoDB for storing route and user data
-  - **Authentication:** Passport.js for user authentication
-  - **Testing:** Mocha and Chai for API testing
-- **DevOps:**
-  - **Containerization:** Docker for containerizing the application
-  - **Continuous Integration/Deployment:** Jenkins or GitHub Actions for CI/CD pipeline
-  - **Web Server:** NGINX as a reverse proxy and for serving static files
-- **Others:**
-  - **Version Control:** Git with GitHub as a remote repository
-  - **Package Manager:** npm or Yarn
-  - **Code Linting:** ESLint
-  - **Code Formatting:** Prettier
+## Additional Notes:
+Security considerations such as HTTPS, CORS policy, and WebSocket security must be addressed.
+Scalability should be considered - how the app will handle a large number of concurrent users.
+The UI should be responsive, providing a seamless experience on desktop and mobile devices.
 
-### RESTful API Usage:
-- **Endpoints:**
-  - `GET /api/routes`: Retrieve a list of all routes with basic details.
-  - `GET /api/routes/{id}`: Get detailed information about a specific route.
-  - `POST /api/users/register`: Handle user registration.
-  - `POST /api/users/login`: Handle user login and authentication.
-  - `GET /api/users/favorites`: Fetch user's saved favorite routes (requires auth).
-  - `POST /api/users/favorites`: Add a new favorite route for the user (requires auth).
+---
 
-### WebSocket Usage:
-- **Functionality:**
-  - After a user connects to the application, establish a WebSocket connection using Socket.IO.
-  - Subscribe the user to updates for specific routes or general updates.
-  - Emit events to the client with the latest location data for vehicles at a set interval (e.g., every 10 seconds) or whenever a significant location change occurs.
-  - Handle `disconnect` events when a user leaves the application and clean up any listeners related to that user's session.
+## Features
+- **Real-time Location Updates:** Display live, simulated locations of vehicles on a map.
+- **Route Information:** View routes generated with random coordinates.
+- **Interactive Map:** Utilize an interactive map to track transport movements.
+- **WebSocket Integration:** Real-time updates facilitated through WebSocket connections.
 
-### Instructions for WebSocket Implementation:
-1. **Server-Side (Node.js/Express.js/Socket.IO):**
-   - Set up a Socket.IO server that integrates with your existing Express.js server.
-   - Define events for connection, disconnection, and to emit vehicle location updates.
-   - Connect to the database or an external API to get real-time location data.
-   - Broadcast location updates to all connected clients or specific rooms that represent different routes.
+## Tech Stack
+- **Frontend:** React.js, Leaflet.js/Google Maps API, Styled-Components/Sass, Jest, Cypress
+- **Backend:** Node.js, Express.js, Socket.IO, MongoDB, Mocha, Chai
+- **DevOps:** Docker, Jenkins/GitHub Actions, NGINX
+- **Others:** Git, npm/Yarn, ESLint, Prettier
 
-2. **Client-Side (React.js/Socket.IO Client):**
-   - Use the Socket.IO client library to establish a connection to the server.
-   - Listen for location update events and update the state accordingly to re-render the map components with the new locations.
-   - Implement cleanup logic using React's useEffect hook to disconnect the WebSocket connection when the component unmounts.
+## Getting Started
 
-### Instructions for RESTful API Implementation:
-1. **Server-Side:**
-   - Design and implement RESTful endpoints following best practices.
-   - Include middleware for authentication and error handling.
-   - Ensure responses are correctly structured and HTTP status codes are used appropriately.
+### Prerequisites
+- Node.js and npm
+- MongoDB
+- Git
 
-2. **Client-Side:**
-   - Use a library like Axios or Fetch API to make requests to the RESTful API endpoints.
-   - Handle the data received from the API to display route information.
-   - Implement state management to handle the data received and to manage user sessions.
+### Installation
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-repository/TransitTrackr.git
+   cd TransitTrackr
+   ```
+2. **Install Node.js dependencies:**
+   ```sh
+   npm install
+   ```
+3. **Set up MongoDB:**
+   - Ensure MongoDB is running on your machine.
+   - Create a database named `transittrackr`.
 
-### Deliverables:
-- Source code for both the front-end and back-end.
-- Documentation, including setup instructions, API endpoints, and WebSocket events.
-- A Dockerfile and docker-compose.yml for containerization.
-- Automated tests for both the front-end and back-end.
+4. **Start the server:**
+   ```sh
+   npm start
+   ```
+   This will start the Node.js server on `localhost:5000` and create an initial route with random coordinates.
 
-### Additional Notes:
-- Security considerations such as HTTPS, CORS policy, and WebSocket security must be addressed.
-- Scalability should be considered - how the app will handle a large number of concurrent users.
-- The UI should be responsive, providing a seamless experience on desktop and mobile devices.
+5. **Running the Frontend:**
+   - Navigate to the frontend directory.
+   - Install dependencies and start the React application as per the frontend README instructions.
+
+## Using the Application
+- Open the application in a web browser.
+- Real-time vehicle movement is simulated using random coordinates in the San Jose area.
+- You can view different routes, each generated with random waypoints.
+
+## WebSocket Communication
+- Upon loading the application, a WebSocket connection is established.
+- Real-time location data is sent from the server to the client at regular intervals.
+
+## RESTful API Endpoints
+- `GET /api/routes`: Retrieve a list of all routes.
+- `GET /api/routes/{id}`: Get detailed information about a specific route.
+
+## Contributing
+Contributions to the project are welcome! Please follow the standard fork and pull request workflow.
+
+## License
+This project is licensed under the [MIT License](LICENSE.md).
+
+## Contact
+- Project Link: [https://github.com/your-repository/TransitTrackr](https://github.com/your-repository/TransitTrackr)
+
+---
+
+This README provides a comprehensive overview of the project, including its features, tech stack, setup instructions, and usage. Make sure to replace the placeholder URLs and instructions with actual details relevant to your project.
