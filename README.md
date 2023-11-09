@@ -4,10 +4,8 @@
 TransitTrackr is a real-time public transport tracking web application that allows users to view and track the live locations of public transportation vehicles on a map. This application focuses on the San Jose, California area and simulates vehicle movement by generating routes with random coordinates.
 
 ## Deliverables:
-Create 5 routes comprising 15 points each using the `generateRandomCoordinates` method, and save them to static code or to MongoDB, as in the `backend.js`. Once done, develop an application that shows the live location of public transport vehicles (like buses or trains) on a map.
-Documentation, including setup instructions, API endpoints, and WebSocket events.
-A Dockerfile and docker-compose.yml for containerization.
-Automated tests for both the front-end and back-end.
+  - Create 5 routes comprising 15 points each using the `generateRandomCoordinates` method, and save them to static code or to MongoDB, as in the `backend.js`. Once done, develop an application that shows the live location of public transport vehicles (like buses or trains) on a map.
+  - Documentation, including setup instructions, API endpoints, and WebSocket events.
 
 ## Additional Notes:
 Security considerations such as HTTPS, CORS policy, and WebSocket security must be addressed.
