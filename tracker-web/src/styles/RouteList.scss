@@ -1,0 +1,92 @@
+@import './variables.scss';
+
+.leftPane{ 
+  display: flex ;
+  flex-direction: column ;
+  gap: 1rem ;
+  align-items: flex-end ;
+}
+
+.routeListContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 420px;
+  height: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+
+  & > .routeItem {
+    border-radius: 8px;
+    border: 1px solid #6c6c6c;
+    padding: .5rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+    
+    &:hover{
+      background-color: #d0cfcf;
+    }
+  }
+}
+
+@media (max-width: $layout-breakpoint-tablet) {
+
+  .routeListContainer {
+    padding: 0px 4px;
+    width: 200px;
+
+    & > .routeItem {
+      padding: .2rem .5rem;
+      width: 100%;
+
+      span {
+        font-size: smaller;
+      }
+
+      & > div {
+        align-items: center;
+      }
+    }
+
+    .ant-btn-icon + span{
+      display: none;
+      margin-inline-end: 0px;
+    }
+  }
+}
+
+@media (max-width: $layout-breakpoint-mobile) {
+  .routeListContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items:center;
+    justify-content: center;
+
+    padding: 0px 4px;
+    width: 100%;
+
+    & > .routeItem {
+      padding: .2rem .5rem;
+      width: 140px;
+
+      & > div {
+        align-items: center;
+      }
+
+      .ant-progress { 
+        display: none;
+      }
+    }
+
+    .ant-btn-icon + span{
+      display: none;
+      margin-inline-end: 0px;
+    }
+  }
+}
+

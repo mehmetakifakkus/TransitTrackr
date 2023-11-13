@@ -1,0 +1,21 @@
+@import './variables.scss';
+
+.main {
+  padding: 12px 24px;
+  position: fixed;
+  height: calc(100% - 120px);
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  bottom: 40px;
+  width: calc(100% - 30px);
+}
+
+@media (max-width: $layout-breakpoint-mobile) {
+  .main{
+    flex-direction: column;
+    height: calc(100% - 118px);
+    bottom: 40px;
+    width: calc(100% - 30px);
+  }
+}
