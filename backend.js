@@ -41,20 +41,6 @@ app.get('/api/routes/:id', (req, res) => {
     .catch(err => res.status(404).json({ noroutefound: 'No route found with that ID' }));
 });
 
-// Function to generate random coordinates in San Jose, California
-const generateRandomCoordinates = () => {
-  // San Jose approximate bounds
-  const latMin = 37.1245;
-  const latMax = 37.5485;
-  const lngMin = -122.2654;
-  const lngMax = -121.5891;
-
-  const lat = Math.random() * (latMax - latMin) + latMin;
-  const lng = Math.random() * (lngMax - lngMin) + lngMin;
-  
-  return { lat, lng };
-};
-
 // WebSocket connection logic
 io.on('connection', (socket) => {
   console.log('New client connected');
