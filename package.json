@@ -1,0 +1,35 @@
+{
+  "name": "transittrackr",
+  "version": "1.0.0",
+  "description": "TransitTrackr is a real-time public transport tracking web application",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mehmetakifakkus/TransitTrackr.git"
+  },
+  "keywords": [
+    "real-time",
+    "react",
+    "tracking",
+    "leafletjs"
+  ],
+  "author": "Mehmet Akif AKKUS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mehmetakifakkus/TransitTrackr/issues"
+  },
+  "homepage": "https://github.com/mehmetakifakkus/TransitTrackr#readme",
+  "dependencies": {
+    "axios": "^1.6.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "mongoose": "^8.0.0",
+    "socket.io": "^4.7.2",
+    "uuidv4": "^6.2.13"
+  }
+}
