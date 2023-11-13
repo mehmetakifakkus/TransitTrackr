@@ -1,0 +1,23 @@
+@import './Variables.scss';
+
+.navbar{
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  padding: 12px 20px;
+  width: 100%;  
+  background-color: $blackColor;
+
+  & > .logo{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 380px;
+    height: 100%;
+    font-size: 1.5rem;
+    font-family: $titleFont;
+    color: $whiteColor;
+    cursor: pointer;
+  }
+}
