@@ -1,0 +1,17 @@
+@import './Variables.scss';
+
+.footer {
+  position: fixed;
+  height: 32px ;
+  bottom:  0px ;
+  left: 12px ;
+
+  & > .status {
+    display:flex;
+    justify-items: center;
+    align-items:center;
+    gap:1rem;
+    font-size:18px;
+    color: $blackColor;
+  }
+}
