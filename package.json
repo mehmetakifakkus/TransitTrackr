@@ -2,6 +2,7 @@
   "name": "transittrackr",
   "version": "1.0.0",
   "description": "TransitTrackr is a real-time public transport tracking web application",
+  "type": "module",
   "main": "backend.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
