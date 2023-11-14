@@ -101,7 +101,7 @@ io.on('connection', async (socket) => {
     currentLocations.forEach(location => { location.currentStep = -1 });
 
     if (allDone || locationUpdateInterval === null) // start sending location updates if all vehicles are done
-      locationUpdateInterval = setInterval(sendLocationUpdate, 500);
+      locationUpdateInterval = setInterval(sendLocationUpdate, 1000);
   })
 
   // start travel by setting value of location with specified id to 0
@@ -113,7 +113,7 @@ io.on('connection', async (socket) => {
       route.currentStep = -1;
 
       if (allDone || locationUpdateInterval === null) // start sending location updates if all vehicles are done
-        locationUpdateInterval = setInterval(sendLocationUpdate, 500);
+        locationUpdateInterval = setInterval(sendLocationUpdate, 1000);
     }
   });
 
