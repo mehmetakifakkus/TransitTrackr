@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import RoutingMachine from "./RoutingMachine";
 
 // Leaflet CSS
 import "leaflet/dist/leaflet.css";
@@ -23,14 +24,17 @@ export function Map({ locationUpdates }) {
       className="mapStyle"
     >
       <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-          />
-        {locationUpdates.map((location, id) => (
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+      />
+      {locationUpdates.map((location, id) => (
+        <>
           <Marker key={location.id} ref={el => leafletRef.current[id] = el} position={location.coordinate || location.origin}>
             <Popup autoClose={false} closeButton={false} closeOnClick={false} >{location.name}</Popup>
           </Marker>
-        ))}
+          <RoutingMachine steps={location.steps} />
+        </>
+      ))}
     </MapContainer>
   );
 }
