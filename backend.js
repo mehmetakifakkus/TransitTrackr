@@ -60,18 +60,62 @@ app.get('/api/routes/:id', (req, res) => {
 });
 
 // WebSocket connection logic
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
   console.log('New client connected');
+  let allDone = false;
+
+  // fetch all routes from the database
+  const routes = await Route.find();
+
+  let currentLocations = routes.map(route => {
+    return {
+      id: route._id.toString(),
+      name: route.name,
+      currentStep: 0,
+    }
+  })
 
   const sendLocationUpdate = () => {
-    const locationData = {
-      routeId: '12345',  // Example route ID
-      coordinates: generateRandomCoordinates() // Generates random coordinates in San Jose
-    };
-    socket.emit('locationUpdate', locationData);
+    currentLocations = currentLocations.map((loc, id) => {
+      const route = routes[id];
+      return {
+        ...loc,
+        coordinate: (loc.currentStep + 1) < route.steps.length ? route.steps[loc.currentStep + 1] : route.destination,
+        currentStep: loc.currentStep + 1,
+        percentage: Math.round(100 * (loc.currentStep + 1) / routes[id].steps.length)
+      }
+    })
+
+    allDone = currentLocations.every(loc => loc.percentage >= 100);
+
+    // if all vehicles are done with their route, stop sending location updates
+    if (allDone) clearInterval(locationUpdateInterval);
+    socket.emit('locationUpdate', currentLocations);
   };
 
-  const locationUpdateInterval = setInterval(sendLocationUpdate, 10000);
+  // time interval for location update
+  let locationUpdateInterval = null;
+
+  // start travel by setting currentStep values of all to 0
+  socket.on("startTravel", () => {
+    currentLocations.forEach(location => { location.currentStep = -1 });
+
+    if (allDone || locationUpdateInterval === null) // start sending location updates if all vehicles are done
+      locationUpdateInterval = setInterval(sendLocationUpdate, 500);
+  })
+
+  // start travel by setting value of location with specified id to 0
+  socket.on("startTravelById", id => {
+    console.log('start travel by id:', id)
+    let route = currentLocations.find(location => location.id === id)
+
+    if (route) {
+      route.currentStep = -1;
+
+      if (allDone || locationUpdateInterval === null) // start sending location updates if all vehicles are done
+        locationUpdateInterval = setInterval(sendLocationUpdate, 500);
+    }
+  });
 
   socket.on('disconnect', () => {
     console.log('Client disconnected');
