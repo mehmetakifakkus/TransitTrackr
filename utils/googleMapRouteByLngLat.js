@@ -47,7 +47,7 @@ function generateAndStoreDirections(origin, destination, mode = 'driving') {
         Route.create({
           origin,
           destination,
-          steps: intermediateSteps,
+          steps: [origin, ...intermediateSteps, destination],
           name: "Route " + Number(count + 1),
         });
         console.log(`Route ${count + 1} created`);

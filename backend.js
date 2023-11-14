@@ -42,11 +42,13 @@ app.get('/api/routes', (req, res) => {
     .then(routes =>
       res.json(routes.map(route => {
         return {
+          ...route,
           id: route._id.toString(),
           name: route.name,
-          percentage: 0,
+          steps: route.steps,
           origin: route.origin,
-          destination: route.destination
+          destination: route.destination,
+          percentage: 0,
         }
       }))
     )
@@ -71,6 +73,7 @@ io.on('connection', async (socket) => {
     return {
       id: route._id.toString(),
       name: route.name,
+      steps: route.steps,
       currentStep: 0,
     }
   })
