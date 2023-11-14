@@ -1,18 +1,26 @@
 // Import necessary modules
-const express = require('express');
-const http = require('http');
-const socketIO = require('socket.io');
-const mongoose = require('mongoose');
-const cors = require('cors');
+import express from 'express';
+import http from 'http';
+import { Server as socketIO } from 'socket.io';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+// Import environment variables
+dotenv.config({ path: '.env' });
 
 // Import your route schema
-// const Route = require('./models/Route');
+import { Route } from './models/Route.js';
 
 // Initialize the express application
 const app = express();
 
 // Enable CORS with various options
 app.use(cors());
+
+var allowedOrigins = [
+  'http://localhost:3000',
+  'http://mytrackerapp.com'];
 
 // Body parser middleware
 app.use(express.json());
@@ -21,17 +29,27 @@ app.use(express.json());
 const server = http.createServer(app);
 
 // Initialize socket.io on the server
-const io = socketIO(server);
+const io = new socketIO(server, { cors: { origin: allowedOrigins } });
 
 // Connect to MongoDB
-mongoose.connect('your-mongodb-uri', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
 // Define the RESTful API routes
 app.get('/api/routes', (req, res) => {
   Route.find()
-    .then(routes => res.json(routes))
+    .then(routes =>
+      res.json(routes.map(route => {
+        return {
+          id: route._id.toString(),
+          name: route.name,
+          percentage: 0,
+          origin: route.origin,
+          destination: route.destination
+        }
+      }))
+    )
     .catch(err => res.status(404).json({ noroutesfound: 'No routes found' }));
 });
 
@@ -62,7 +80,7 @@ io.on('connection', (socket) => {
 });
 
 // Define the PORT
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Run the server
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
