@@ -114,7 +114,7 @@ Contributions to the project are welcome! Please follow the standard fork and pu
 This project is licensed under the [MIT License](LICENSE.md).
 
 ## Contact
-- Project Link: [https://github.com/your-repository/TransitTrackr](https://github.com/your-repository/TransitTrackr)
+- Project Link: [https://github.com/mehmetakifakkus/TransitTrackr](https://github.com/mehmetakifakkus/TransitTrackr)
 - Author - [mehmetakifakkus](https://mehmetakifakkus.github.io)
   
 ---
