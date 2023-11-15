@@ -54,6 +54,7 @@ function generateAndStoreDirections(origin, destination, mode = 'driving') {
       } else {
         console.error(`Error: ${data.status} - ${data.error_message}`);
       }
+      process.exit(0);
     })
     .catch(error => {
       console.error('Error:', error.message);
