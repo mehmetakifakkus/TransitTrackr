@@ -3,7 +3,7 @@
 ## Project Overview and Task
 TransitTrackr is a real-time public transport tracking web application that allows users to view and track the live locations of public transportation vehicles on a map. This application focuses on the San Jose, California area and simulates vehicle movement by generating routes with random coordinates.
 
-This part of documentation covers making the frontend of the project and making it work with the backend.
+This part of documentation covers making the frontend of the project up and working with the backend.
 
 ---
 
@@ -15,7 +15,7 @@ This part of documentation covers making the frontend of the project and making 
 ### Installation
 1. **Change the directory:**
    ```sh
-   cd TransitTrackr
+   cd tracker-web
    ```
 2. **Install Node.js dependencies:**
    ```sh

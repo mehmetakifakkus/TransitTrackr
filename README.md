@@ -74,6 +74,8 @@ TransitTrackr is a real-time public transport tracking web application that allo
 - Open the application in a web browser.
 - Real-time vehicle movement is simulated using random coordinates in the San Jose area.
 - You can view different routes, each generated with random waypoints.
+- You can start all the routes by clicking the `Start All` button.
+- You can restart all the routes by clicking the `Restart All` button. Or you can restart a certain route by clicking the `Restart` button on the route card.
 
 ## WebSocket Communication
 - Upon loading the application, a WebSocket connection is established.
