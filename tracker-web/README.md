@@ -42,6 +42,16 @@ This part of documentation covers making the frontend of the project up and work
   <img width="720" height="auto" alt="screenshots/desktopMode" src="../screenshots/mainpage.png">
 </p>
 
+## Folder Structure
+
+- `cypress`: Contains the Cypress end-to-end and component testing framework.
+- `public`: Contains the static assets used in the application.
+- `src`: Contains the source code of the application.
+  - `components`: Contains reusable React components used throughout the application.
+  - `styles`: Contains the SASS styles used in the application.
+  - `App.js`: The main React component of the application.
+  - `index.js`: The entry point of the application.
+  - `setupTests.js`: The setup file for the Jest testing framework.
 
 ## Contributing
 Contributions to the project are welcome! Please follow the standard fork and pull request workflow.

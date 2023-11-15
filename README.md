@@ -77,6 +77,14 @@ TransitTrackr is a real-time public transport tracking web application that allo
 - You can start all the routes by clicking the `Start All` button.
 - You can restart all the routes by clicking the `Restart All` button. Or you can restart a certain route by clicking the `Restart` button on the route card.
 
+## Folder Structure
+
+- `models`: Contains the mongoose models used in the application. There are only one model for this project: **Route model:** stores route information 
+- `screenshots`: Includes screenshots of the application.
+- `tracker-web`: Contains the frontend React application.
+- `components`: Contains reusable React components used throughout the application.
+- `utils`: Contains utility functions used throughout the application.
+  
 ## WebSocket Communication
 - Upon loading the application, a WebSocket connection is established.
 - Real-time location data is sent from the server to the client at regular intervals.
@@ -127,3 +135,4 @@ This README provides a comprehensive overview of the project, including its feat
 - [Leaflet and React Tutorial](https://www.youtube.com/watch?v=WKaUkmQhRDY)
 - [Creating Models in Mongoose](https://mongoosejs.com/docs/models.html)
 - [Mongoose Queries](https://mongoosejs.com/docs/queries.html)
+- [Using Cors in Express](https://medium.com/zero-equals-false/using-cors-in-express-cac7e29b005b)
