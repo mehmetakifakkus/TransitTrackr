@@ -9,7 +9,7 @@ function MainComponent({socket}) {
   const [locationUpdates, setLocationUpdates] = useState([]);
 
   useEffect(()=>{
-    axios.get("http://localhost:5001/api/routes")
+    axios.get("https://localhost:443/api/routes")
     .then(response => {
       setRoutes(response.data);
       setLocationUpdates(response.data);
@@ -28,7 +28,6 @@ function MainComponent({socket}) {
         }
       })
       setLocationUpdates(merged);
-      console.log(merged);
     })
   }, [socket, routes]);
 

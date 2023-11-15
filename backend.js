@@ -1,6 +1,7 @@
 // Import necessary modules
 import express from 'express';
-import http from 'http';
+import https from 'https';
+import fs from 'fs';
 import { Server as socketIO } from 'socket.io';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -11,6 +12,11 @@ dotenv.config({ path: '.env' });
 
 // Import your route schema
 import { Route } from './models/Route.js';
+
+// Create HTTPS credentials using the private key and certificate
+const privateKey = fs.readFileSync('./certificates/privatekey.pem', 'utf8');
+const certificate = fs.readFileSync('./certificates/certificate.pem', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
 
 // Initialize the express application
 const app = express();
@@ -25,8 +31,8 @@ var allowedOrigins = [
 // Body parser middleware
 app.use(express.json());
 
-// Initialize HTTP Server for Socket.IO
-const server = http.createServer(app);
+// Initialize secure HTTPS Server for Socket.IO
+const server = https.createServer(credentials, app);
 
 // Initialize socket.io on the server
 const io = new socketIO(server, { cors: { origin: allowedOrigins } });
@@ -127,7 +133,7 @@ io.on('connection', async (socket) => {
 });
 
 // Define the PORT
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 443;
 
 // Run the server
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`Secure server running on port ${PORT}`));

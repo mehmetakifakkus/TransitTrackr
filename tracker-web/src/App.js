@@ -11,7 +11,7 @@ function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const socket = socketIO.connect('http://localhost:5001');
+    const socket = socketIO.connect('wss://localhost:443');
     setSocket(socket);
 
     socket.on('connect', () => {

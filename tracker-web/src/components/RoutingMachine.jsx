@@ -6,8 +6,6 @@ import { createControlComponent } from "@react-leaflet/core";
 import "../styles/RoutingMachine.scss";
 
 const createRoutineMachineLayer = ({steps}) => {
-   console.log("steps", steps)
-
   const instance = L.Routing.control({
     waypoints: steps.map(step => L.latLng(step.lat, step.lng)),
     lineOptions: {
