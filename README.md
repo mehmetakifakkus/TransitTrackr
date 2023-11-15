@@ -82,7 +82,6 @@ TransitTrackr is a real-time public transport tracking web application that allo
 - `models`: Contains the mongoose models used in the application. There are only one model for this project: **Route model:** stores route information 
 - `screenshots`: Includes screenshots of the application.
 - `tracker-web`: Contains the frontend React application.
-- `components`: Contains reusable React components used throughout the application.
 - `utils`: Contains utility functions used throughout the application.
   
 ## WebSocket Communication
