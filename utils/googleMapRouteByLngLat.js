@@ -24,7 +24,7 @@ function generateAndStoreDirections(origin, destination, mode = 'driving') {
   };
 
   axios.get(apiUrl, { params })
-    .then(response => {
+    .then(async response => {
       const data = response.data;
 
       if (data.status === 'OK') {
@@ -44,7 +44,7 @@ function generateAndStoreDirections(origin, destination, mode = 'driving') {
           intermediateSteps.push(location);
           // console.log(`Step ${intermediateSteps.length}:`, location);
         }
-        Route.create({
+        await Route.create({
           origin,
           destination,
           steps: [origin, ...intermediateSteps, destination],
