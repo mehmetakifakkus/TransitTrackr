@@ -15,7 +15,7 @@ function RouteList({socket, locationUpdates}) {
 
   return (
     <div className='leftPane'>
-      <Button shape={"default"} size={"middle"} icon={allRoutesAreInitialState ? <FaPlay /> : <MdOutlineReplay/>} onClick={()=>{
+      <Button data-testid="start-route" shape={"default"} size={"middle"} icon={allRoutesAreInitialState ? <FaPlay /> : <MdOutlineReplay/>} onClick={()=>{
         socket.emit("startTravel");
       }}>
         {allRoutesAreInitialState ? "Start All" : "Restart All"}
